@@ -33,9 +33,10 @@ const Home = () => {
             <Link to="/signup" className="btn-primary">
               Get started free
             </Link>
-            <a href="#assistant" className="btn-secondary">
-              See how the AI works
+            <a href="#features" className="btn-secondary">
+              Explore features
             </a>
+
           </div>
 
           <p className="hero-trust">
@@ -70,7 +71,8 @@ const Home = () => {
       </section>
 
       {/* CORE INTELLIGENCE */}
-      <section className="home-pillars">
+      <section className="home-pillars" id="features">
+
         <h2 className="section-title">
           How the AI Understands You
         </h2>

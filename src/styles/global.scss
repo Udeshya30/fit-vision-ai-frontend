@@ -2,6 +2,10 @@
 @use "./reset";
 @use "./typography";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .btn-primary {
   background-color: var(--accent);
   border: none;
