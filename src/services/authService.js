@@ -1,33 +1,29 @@
 const API_BASE = "http://127.0.0.1:8000";
 
-export async function signup(payload) {
-  const res = await fetch(`${API_BASE}/auth/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
+async function handleResponse(res) {
+  const data = await res.json();
   if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.detail || "Signup failed");
+    throw new Error(data.detail || "Something went wrong");
   }
-
-  return res.json();
+  return data;
 }
 
-export async function login(payload) {
+export async function loginUser(payload) {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  return handleResponse(res);
+}
 
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.detail || "Login failed");
-  }
-
-  return res.json();
+export async function signupUser(payload) {
+  const res = await fetch(`${API_BASE}/auth/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  return handleResponse(res);
 }
 
 export function saveToken(token) {
