@@ -1,48 +1,44 @@
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-async function handleResponse(res) {
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.detail || "Something went wrong");
-  }
-  return data;
-}
+const fetchWithCreds = (url, options = {}) =>
+  fetch(`${API_BASE}${url}`, {
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    ...options,
+  });
 
-// LOGIN
-export async function loginUser(payload) {
-  const res = await fetch(`${API_BASE}/auth/login`, {
+export const loginUser = async (payload) => {
+  const res = await fetchWithCreds("/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include", // 🔐 cookies
     body: JSON.stringify(payload),
   });
-  return handleResponse(res);
-}
+  if (!res.ok) throw new Error("Login failed");
+};
 
-// SIGNUP
-export async function signupUser(payload) {
-  const res = await fetch(`${API_BASE}/auth/signup`, {
+export const signupUser = async (payload) => {
+  const res = await fetchWithCreds("/auth/signup", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
     body: JSON.stringify(payload),
   });
-  return handleResponse(res);
-}
+  if (!res.ok) throw new Error("Signup failed");
+};
 
-// LOGOUT
-export async function logoutUser() {
-  await fetch(`${API_BASE}/auth/logout`, {
-    method: "POST",
-    credentials: "include",
-  });
-}
+export const logoutUser = async () => {
+  await fetchWithCreds("/auth/logout", { method: "POST" });
+};
 
-// SESSION CHECK
-export async function checkSession() {
-  const res = await fetch(`${API_BASE}/auth/refresh`, {
-    method: "POST",
-    credentials: "include",
+export const getCurrentUser = async () => {
+  const res = await fetchWithCreds("/users/me");
+  if (!res.ok) throw new Error("Not authenticated");
+  return res.json();
+};
+
+export const updateProfile = async (payload) => {
+  const res = await fetchWithCreds("/users/profile", {
+    method: "PUT",
+    body: JSON.stringify(payload),
   });
-  return res.ok;
-}
+  if (!res.ok) throw new Error("Update failed");
+};

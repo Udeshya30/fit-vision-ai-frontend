@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { logoutUser } from "../services/authService";
+import { getCurrentUser, logoutUser } from "../services/authService";
 
 const AuthContext = createContext();
 
@@ -7,16 +7,9 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchUser = async () => {
+  const loadUser = async () => {
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/users/me`,
-        { credentials: "include" }
-      );
-
-      if (!res.ok) throw new Error("Not authenticated");
-
-      const data = await res.json();
+      const data = await getCurrentUser();
       setUser(data);
     } catch {
       setUser(null);
@@ -25,17 +18,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    loadUser(); // 🔑 hydration on refresh
+  }, []);
+
   const logout = async () => {
     await logoutUser();
     setUser(null);
   };
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ user, loading, logout, refresh: fetchUser }}>
+    <AuthContext.Provider
+      value={{ user, setUser, loading, logout, refreshUser: loadUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
