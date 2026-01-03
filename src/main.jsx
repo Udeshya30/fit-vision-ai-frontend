@@ -4,6 +4,7 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/global.scss";
 import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,6 +20,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       }}
     />
 
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );

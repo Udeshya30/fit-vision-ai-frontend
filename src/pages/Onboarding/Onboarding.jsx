@@ -3,93 +3,93 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./Onboarding.scss";
 
+import StepAge from "./StepAge";
+import StepBody from "./StepBody";
+import StepLifestyle from "./StepLifestyle";
+import StepGoal from "./StepGoal";
+
+const TOTAL_STEPS = 4;
+
 const Onboarding = () => {
   const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     age: "",
-    weight: "",
     height: "",
-    lifestyle: "sedentary",
-    goal: "longevity",
+    weight: "",
+    lifestyle: "",
+    goal: "",
   });
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const update = (key, value) =>
+    setForm((p) => ({ ...p, [key]: value }));
 
-  const submit = async (e) => {
-    e.preventDefault();
+  const next = () => setStep((s) => s + 1);
+  const back = () => setStep((s) => s - 1);
 
+  const submit = async () => {
     try {
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/onboarding`,
         {
-          method: "PUT",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: JSON.stringify({
-            age: Number(form.age),
-            weight: Number(form.weight),
-            height: Number(form.height),
-            lifestyle: form.lifestyle,
-            goal: form.goal,
-          }),
+          body: JSON.stringify(form),
         }
       );
 
       if (!res.ok) throw new Error();
 
-      toast.success("Onboarding completed 🎉");
+      toast.success("Welcome to FitVisionAI 💚");
       navigate("/dashboard");
     } catch {
-      toast.error("Please check your inputs");
+      toast.error("Something went wrong");
     }
   };
 
   return (
     <div className="onboarding">
-      <form className="onboarding-card" onSubmit={submit}>
-        <h2>Tell us about yourself</h2>
-        <p>This helps personalize your AI health guidance</p>
-
-        <input
-          type="number"
-          placeholder="Age"
-          name="age"
-          required
-          onChange={handleChange}
+      {/* PROGRESS */}
+      <div className="progress">
+        <div
+          className="progress-bar"
+          style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
         />
+      </div>
 
-        <input
-          type="number"
-          placeholder="Weight (kg)"
-          name="weight"
-          required
-          onChange={handleChange}
-        />
-
-        <input
-          type="number"
-          placeholder="Height (cm)"
-          name="height"
-          required
-          onChange={handleChange}
-        />
-
-        <select name="lifestyle" onChange={handleChange}>
-          <option value="sedentary">Sedentary</option>
-          <option value="moderate">Moderately active</option>
-          <option value="active">Very active</option>
-        </select>
-
-        <select name="goal" onChange={handleChange}>
-          <option value="longevity">Longevity</option>
-          <option value="fat_loss">Fat loss</option>
-          <option value="energy">More energy</option>
-          <option value="fitness">Better fitness</option>
-        </select>
-
-        <button className="btn-primary">Continue</button>
-      </form>
+      {/* CARD */}
+      <div className="onboarding-card">
+        {step === 1 && (
+          <StepAge value={form.age} onNext={next} onChange={update} />
+        )}
+        {step === 2 && (
+          <StepBody
+            height={form.height}
+            weight={form.weight}
+            onNext={next}
+            onBack={back}
+            onChange={update}
+          />
+        )}
+        {step === 3 && (
+          <StepLifestyle
+            value={form.lifestyle}
+            onNext={next}
+            onBack={back}
+            onChange={update}
+          />
+        )}
+        {step === 4 && (
+          <StepGoal
+            value={form.goal}
+            onBack={back}
+            onSubmit={submit}
+            onChange={update}
+          />
+        )}
+      </div>
     </div>
   );
 };

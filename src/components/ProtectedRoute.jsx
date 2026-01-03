@@ -1,9 +1,20 @@
 import { Navigate } from "react-router-dom";
-import { getToken } from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const token = getToken();
-  return token ? children : <Navigate to="/login" replace />;
+  const { user, loading } = useAuth();
+
+  if (loading) return null;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!user.onboarding_completed) {
+    return <Navigate to="/onboarding" replace />;
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;

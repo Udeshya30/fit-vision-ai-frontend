@@ -8,32 +8,41 @@ async function handleResponse(res) {
   return data;
 }
 
+// LOGIN
 export async function loginUser(payload) {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include", // 🔐 cookies
     body: JSON.stringify(payload),
   });
   return handleResponse(res);
 }
 
+// SIGNUP
 export async function signupUser(payload) {
   const res = await fetch(`${API_BASE}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(payload),
   });
   return handleResponse(res);
 }
 
-export function saveToken(token) {
-  localStorage.setItem("access_token", token);
+// LOGOUT
+export async function logoutUser() {
+  await fetch(`${API_BASE}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
 }
 
-export function getToken() {
-  return localStorage.getItem("access_token");
-}
-
-export function logout() {
-  localStorage.removeItem("access_token");
+// SESSION CHECK
+export async function checkSession() {
+  const res = await fetch(`${API_BASE}/auth/refresh`, {
+    method: "POST",
+    credentials: "include",
+  });
+  return res.ok;
 }
