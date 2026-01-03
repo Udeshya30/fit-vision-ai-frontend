@@ -1,105 +1,187 @@
 .dashboard {
-  padding: 3rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
+/* HEADER */
 .dashboard-header {
-  margin-bottom: 3rem;
-
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+
+    span {
+      color: var(--accent);
+    }
+  }
+
+  p {
+    margin-top: 0.4rem;
+    color: var(--text-muted);
+  }
+}
+
+/* HEALTH SCORE */
+.health-score-card {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+  color: white;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.score-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .score-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  .score-label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+}
+
+.score-info {
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    opacity: 0.95;
+    max-width: 420px;
+  }
+
+  .score-hint {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    opacity: 0.85;
+  }
+}
+
+/* SNAPSHOT */
+.snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.snapshot-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  h4 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+/* TRENDS */
+.trends-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+
+  h3 {
+    margin-bottom: 0.4rem;
   }
 
   p {
     color: var(--text-muted);
-    font-size: 1rem;
   }
 }
 
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+.trend-placeholder {
+  margin-top: 1.6rem;
+  height: 180px;
+  border-radius: 14px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 0.9rem;
 }
 
-.card {
-  background: #ffffff;
-  padding: 1.8rem;
-  border-radius: 18px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+/* AI ASSISTANT */
+.ai-preview-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
 
   h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    margin-bottom: 0.4rem;
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-  }
-
-  .muted {
-    color: #64748b;
-    font-size: 0.9rem;
+  p {
+    color: var(--text-muted);
+    margin-bottom: 1.4rem;
   }
 }
 
-.card.highlight {
-  align-items: center;
-  text-align: center;
+.ai-suggestions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
 
-  .score {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin: 1rem 0;
+  span {
+    background: #f1f5f9;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    cursor: pointer;
   }
 }
 
-.card.wide {
-  grid-column: span 2;
-}
-
-.ai-preview {
-  margin-top: 0.6rem;
-  padding: 0.9rem 1.1rem;
-  background: #f1f5f9;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  color: #0f172a;
-}
-
-.btn-primary {
-  margin-top: auto;
+.ai-btn {
   background: var(--accent);
   color: white;
-  border: none;
+  padding: 0.8rem 1.6rem;
   border-radius: 12px;
-  height: 44px;
+  border: none;
   font-weight: 600;
-  cursor: not-allowed;
-  opacity: 0.7;
+  cursor: pointer;
 }
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1024px) {
+  .snapshot-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .card.wide {
-    grid-column: span 1;
+  .health-score-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .snapshot-grid {
+    grid-template-columns: 1fr;
   }
 }
