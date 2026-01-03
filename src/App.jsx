@@ -38,6 +38,8 @@ import Signup from "./pages/Signup/Signup";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Onboarding from "./pages/Onboarding/Onboarding";
+
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -64,6 +66,8 @@ const App = () => {
 
         {/* APP PAGES (Dashboard – navbar later) */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+
 
         {/* FALLBACK */}
         <Route path="*" element={<Navigate to="/" replace />} />
