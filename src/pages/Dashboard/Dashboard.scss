@@ -168,6 +168,45 @@
   cursor: pointer;
 }
 
+
+
+
+
+/* CHARTS */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.chart-card {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+.chart-card.full {
+  grid-column: span 2;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card.full {
+    grid-column: span 1;
+  }
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .snapshot-grid {

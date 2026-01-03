@@ -1,5 +1,48 @@
 import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
+import FloatingAIAssistant from "../../components/FloatingAIAssistant/FloatingAIAssistant";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+} from "recharts";
 import "./Dashboard.scss";
+
+/* TEMP MOCK DATA — later will come from backend */
+const weightData = [
+  { week: "W1", weight: 74 },
+  { week: "W2", weight: 73.2 },
+  { week: "W3", weight: 72.5 },
+  { week: "W4", weight: 71.8 },
+  { week: "W5", weight: 71.2 },
+];
+
+const activityData = [
+  { day: "Mon", minutes: 35 },
+  { day: "Tue", minutes: 20 },
+  { day: "Wed", minutes: 40 },
+  { day: "Thu", minutes: 30 },
+  { day: "Fri", minutes: 45 },
+  { day: "Sat", minutes: 25 },
+  { day: "Sun", minutes: 15 },
+];
+
+const consistencyData = [
+  { day: "Mon", score: 70 },
+  { day: "Tue", score: 65 },
+  { day: "Wed", score: 80 },
+  { day: "Thu", score: 75 },
+  { day: "Fri", score: 85 },
+  { day: "Sat", score: 60 },
+  { day: "Sun", score: 55 },
+];
 
 const Dashboard = () => {
   return (
@@ -11,9 +54,7 @@ const Dashboard = () => {
           <h1>
             Welcome back, <span>Udeshya</span> 👋
           </h1>
-          <p>
-            We’re helping you improve <strong>weight loss</strong>.
-          </p>
+          <p>We’re helping you improve <strong>weight loss</strong>.</p>
         </section>
 
         {/* HEALTH SCORE */}
@@ -25,10 +66,7 @@ const Dashboard = () => {
 
           <div className="score-info">
             <h3>Great progress</h3>
-            <p>
-              Your health score is improving based on your lifestyle and
-              activity trends.
-            </p>
+            <p>Your lifestyle consistency is improving steadily.</p>
             <span className="score-hint">
               Based on diet, activity & sleep
             </span>
@@ -41,54 +79,84 @@ const Dashboard = () => {
             <h4>Goal</h4>
             <p>Weight Loss</p>
           </div>
-
           <div className="snapshot-card">
             <h4>Lifestyle</h4>
             <p>Active</p>
           </div>
-
           <div className="snapshot-card">
             <h4>Weight</h4>
-            <p>70 kg</p>
+            <p>71 kg</p>
           </div>
-
           <div className="snapshot-card">
             <h4>Age</h4>
             <p>28</p>
           </div>
         </section>
 
-        {/* TRENDS */}
-        <section className="trends-card">
-          <h3>Progress Overview</h3>
-          <p>
-            Weight and health trends will appear here once tracking is enabled.
-          </p>
+        {/* CHARTS */}
+        <section className="charts-grid">
 
-          <div className="trend-placeholder">
-            📈 Chart coming soon
-          </div>
-        </section>
-
-        {/* AI ASSISTANT */}
-        <section className="ai-preview-card">
-          <h3>AI Health Assistant</h3>
-          <p>
-            Ask questions about diet, workouts, sleep, or long-term health.
-          </p>
-
-          <div className="ai-suggestions">
-            <span>What should I eat today?</span>
-            <span>How can I burn fat faster?</span>
-            <span>Improve my sleep quality</span>
+          {/* WEIGHT TREND */}
+          <div className="chart-card">
+            <h3>Weight Trend</h3>
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={weightData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="week" />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="weight"
+                  stroke="#14b8a6"
+                  strokeWidth={3}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
 
-          <button className="ai-btn">
-            Ask FitVisionAI
-          </button>
+          {/* ACTIVITY */}
+          <div className="chart-card">
+            <h3>Daily Activity (mins)</h3>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={activityData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="minutes" fill="#0f766e" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* CONSISTENCY */}
+          <div className="chart-card full">
+            <h3>Weekly Consistency</h3>
+            <ResponsiveContainer width="100%" height={260}>
+              <AreaChart data={consistencyData}>
+                <defs>
+                  <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#14b8a6" stopOpacity={0.1} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Area
+                  type="monotone"
+                  dataKey="score"
+                  stroke="#14b8a6"
+                  fill="url(#colorScore)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
         </section>
 
       </div>
+      <FloatingAIAssistant />
     </DashboardLayout>
   );
 };
