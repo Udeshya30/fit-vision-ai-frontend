@@ -3,33 +3,38 @@ import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
-  const name = user?.profile?.name || "there";
-  const goal = user?.profile?.goal || "your health";
-  const lifestyle = user?.profile?.lifestyle || "—";
+  // ⛔ Prevent rendering until auth is hydrated
+  if (loading) {
+    return null;
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  const name = user.profile?.name || "there";
+  const goal = user.profile?.goal || "your health";
+  const lifestyle = user.profile?.lifestyle || "—";
 
   return (
     <DashboardLayout>
       <div className="dashboard">
-        {/* HEADER */}
         <div className="dashboard-header">
           <h1>Welcome back, {name} 👋</h1>
           <p>
             We’re helping you improve{" "}
-            <strong>{goal.replace("_", " ")}</strong> through smarter daily
-            decisions.
+            <strong>{goal.replace("_", " ")}</strong>.
           </p>
         </div>
 
-        {/* GRID */}
         <div className="dashboard-grid">
           <div className="card highlight">
             <h3>Health Score</h3>
             <div className="score">—</div>
             <p className="muted">
-              Your personalized health score will appear here once AI analysis
-              is enabled.
+              AI health score will appear once analysis is enabled.
             </p>
           </div>
 
@@ -56,20 +61,6 @@ const Dashboard = () => {
             <button className="btn-primary" disabled>
               Coming Soon
             </button>
-          </div>
-
-          <div className="card">
-            <h3>Insights</h3>
-            <p className="muted">
-              Personalized insights based on your habits will appear here.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3>Daily Activity</h3>
-            <p className="muted">
-              Track consistency and small daily improvements.
-            </p>
           </div>
         </div>
       </div>
