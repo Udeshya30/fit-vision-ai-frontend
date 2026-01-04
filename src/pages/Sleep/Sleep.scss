@@ -1,0 +1,39 @@
+.sleep-page {
+  padding: 24px;
+}
+
+.sleep-summary {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+}
+
+.sleep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.sleep-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.05);
+
+  h4 {
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #475569;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sleep-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -10,6 +10,10 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 /* APP PAGES */
 import Dashboard from "./pages/Dashboard/Dashboard";
 import HealthInsights from "./pages/HealthInsights/HealthInsights";
+import Diet from "./pages/Diet/Diet";
+import Sleep from "./pages/Sleep/Sleep";
+import Exercise from "./pages/Exercise/Exercise";
+import HealthPreferences from "./pages/HealthPreferences/HealthPreferences";
 import AIAssistantPage from "./pages/AIAssistantPage/AIAssistantPage";
 import Profile from "./pages/Profile/Profile";
 import Onboarding from "./pages/Onboarding/Onboarding";
@@ -95,8 +99,13 @@ const App = () => {
         >
           <Route index element={<Dashboard />} />
           <Route path="insights" element={<HealthInsights />} />
+          <Route path="diet" element={<Diet />} />
+          <Route path="sleep" element={<Sleep />} />
+          <Route path="exercise" element={<Exercise />} />
+          <Route path="preferences" element={<HealthPreferences />} />
           <Route path="assistant" element={<AIAssistantPage />} />
           <Route path="profile" element={<Profile />} />
+
         </Route>
 
         {/* ================= FALLBACK ================= */}
