@@ -1,32 +1,16 @@
 .dashboard-layout {
   display: flex;
-  height: 100vh;
-  background: #f8fafc;
+  min-height: 100vh;
 }
 
 .dashboard-main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  background: #f8fafc;
 }
 
 .dashboard-content {
-  padding: 2rem;
+  flex: 1;
   overflow-y: auto;
-}
-
-
-@media (max-width: 1024px) {
-  .dashboard-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-sidebar {
-    display: none;
-  }
-
-  .dashboard-main {
-    width: 100%;
-  }
 }

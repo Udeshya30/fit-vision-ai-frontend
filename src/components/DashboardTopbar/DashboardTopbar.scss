@@ -1,32 +1,39 @@
 .dashboard-topbar {
   height: 64px;
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 16px;
 
   svg {
-    font-size: 1.2rem;
     cursor: pointer;
+    color: #64748b;
   }
 
   .avatar {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: #14b8a6;
-    color: #fff;
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
+  }
+
+  .logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
   }
 }
