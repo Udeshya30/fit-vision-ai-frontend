@@ -1,5 +1,3 @@
-import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
-import FloatingAIAssistant from "../../components/FloatingAIAssistant/FloatingAIAssistant";
 import {
   LineChart,
   Line,
@@ -13,6 +11,7 @@ import {
   AreaChart,
   Area,
 } from "recharts";
+
 import "./Dashboard.scss";
 
 /* TEMP MOCK DATA — later will come from backend */
@@ -46,118 +45,114 @@ const consistencyData = [
 
 const Dashboard = () => {
   return (
-    <DashboardLayout>
-      <div className="dashboard">
+    <div className="dashboard">
+      {/* HEADER */}
+      <section className="dashboard-header">
+        <h1>
+          Welcome back, <span>Udeshya</span> 👋
+        </h1>
+        <p>
+          We’re helping you improve <strong>weight loss</strong>.
+        </p>
+      </section>
 
-        {/* HEADER */}
-        <section className="dashboard-header">
-          <h1>
-            Welcome back, <span>Udeshya</span> 👋
-          </h1>
-          <p>We’re helping you improve <strong>weight loss</strong>.</p>
-        </section>
+      {/* HEALTH SCORE */}
+      <section className="health-score-card">
+        <div className="score-ring">
+          <div className="score-value">82</div>
+          <div className="score-label">Health Score</div>
+        </div>
 
-        {/* HEALTH SCORE */}
-        <section className="health-score-card">
-          <div className="score-ring">
-            <div className="score-value">82</div>
-            <div className="score-label">Health Score</div>
-          </div>
+        <div className="score-info">
+          <h3>Great progress</h3>
+          <p>Your lifestyle consistency is improving steadily.</p>
+          <span className="score-hint">
+            Based on diet, activity & sleep
+          </span>
+        </div>
+      </section>
 
-          <div className="score-info">
-            <h3>Great progress</h3>
-            <p>Your lifestyle consistency is improving steadily.</p>
-            <span className="score-hint">
-              Based on diet, activity & sleep
-            </span>
-          </div>
-        </section>
+      {/* SNAPSHOT */}
+      <section className="snapshot-grid">
+        <div className="snapshot-card">
+          <h4>Goal</h4>
+          <p>Weight Loss</p>
+        </div>
+        <div className="snapshot-card">
+          <h4>Lifestyle</h4>
+          <p>Active</p>
+        </div>
+        <div className="snapshot-card">
+          <h4>Weight</h4>
+          <p>71 kg</p>
+        </div>
+        <div className="snapshot-card">
+          <h4>Age</h4>
+          <p>28</p>
+        </div>
+      </section>
 
-        {/* SNAPSHOT */}
-        <section className="snapshot-grid">
-          <div className="snapshot-card">
-            <h4>Goal</h4>
-            <p>Weight Loss</p>
-          </div>
-          <div className="snapshot-card">
-            <h4>Lifestyle</h4>
-            <p>Active</p>
-          </div>
-          <div className="snapshot-card">
-            <h4>Weight</h4>
-            <p>71 kg</p>
-          </div>
-          <div className="snapshot-card">
-            <h4>Age</h4>
-            <p>28</p>
-          </div>
-        </section>
+      {/* CHARTS */}
+      <section className="charts-grid">
+        <div className="chart-card">
+          <h3>Weight Trend</h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <LineChart data={weightData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="week" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="weight"
+                stroke="#14b8a6"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
-        {/* CHARTS */}
-        <section className="charts-grid">
+        <div className="chart-card">
+          <h3>Daily Activity (mins)</h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={activityData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Bar
+                dataKey="minutes"
+                fill="#0f766e"
+                radius={[6, 6, 0, 0]}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-          {/* WEIGHT TREND */}
-          <div className="chart-card">
-            <h3>Weight Trend</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={weightData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="week" />
-                <YAxis />
-                <Tooltip />
-                <Line
-                  type="monotone"
-                  dataKey="weight"
-                  stroke="#14b8a6"
-                  strokeWidth={3}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* ACTIVITY */}
-          <div className="chart-card">
-            <h3>Daily Activity (mins)</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={activityData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="minutes" fill="#0f766e" radius={[6, 6, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* CONSISTENCY */}
-          <div className="chart-card full">
-            <h3>Weekly Consistency</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <AreaChart data={consistencyData}>
-                <defs>
-                  <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.8} />
-                    <stop offset="95%" stopColor="#14b8a6" stopOpacity={0.1} />
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Area
-                  type="monotone"
-                  dataKey="score"
-                  stroke="#14b8a6"
-                  fill="url(#colorScore)"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-
-        </section>
-
-      </div>
-      <FloatingAIAssistant />
-    </DashboardLayout>
+        <div className="chart-card full">
+          <h3>Weekly Consistency</h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <AreaChart data={consistencyData}>
+              <defs>
+                <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#14b8a6" stopOpacity={0.1} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="day" />
+              <YAxis />
+              <Tooltip />
+              <Area
+                type="monotone"
+                dataKey="score"
+                stroke="#14b8a6"
+                fill="url(#colorScore)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
+    </div>
   );
 };
 

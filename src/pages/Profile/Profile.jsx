@@ -1,45 +1,52 @@
-import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { updateProfile } from "../../services/authService";
-import toast from "react-hot-toast";
-import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
+import "./Profile.scss";
 
 const Profile = () => {
-  const { user, refreshUser } = useAuth();
-  const [form, setForm] = useState(user.profile);
-
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const save = async () => {
-    try {
-      await updateProfile(form);
-      await refreshUser();
-      toast.success("Profile updated");
-    } catch {
-      toast.error("Update failed");
-    }
-  };
-
   return (
-    <DashboardLayout>
-      <h2>Profile</h2>
+    <div className="profile-page">
+      <header className="page-header">
+        <h1>Profile</h1>
+        <p>Manage your personal health information.</p>
+      </header>
 
-      <input name="age" value={form.age || ""} onChange={handleChange} />
-      <input name="weight" value={form.weight || ""} onChange={handleChange} />
-      <select
-        name="lifestyle"
-        value={form.lifestyle || ""}
-        onChange={handleChange}
-      >
-        <option value="">Lifestyle</option>
-        <option value="sedentary">Sedentary</option>
-        <option value="moderate">Moderate</option>
-        <option value="active">Active</option>
-      </select>
+      <form className="profile-form">
+        <div className="form-group">
+          <label>Age</label>
+          <input type="number" placeholder="Enter age" />
+        </div>
 
-      <button onClick={save}>Save</button>
-    </DashboardLayout>
+        <div className="form-group">
+          <label>Weight (kg)</label>
+          <input type="number" placeholder="Enter weight" />
+        </div>
+
+        <div className="form-group">
+          <label>Height (cm)</label>
+          <input type="number" placeholder="Enter height" />
+        </div>
+
+        <div className="form-group">
+          <label>Lifestyle</label>
+          <select>
+            <option>Active</option>
+            <option>Moderate</option>
+            <option>Sedentary</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Goal</label>
+          <select>
+            <option>Weight Loss</option>
+            <option>Muscle Gain</option>
+            <option>Longevity</option>
+          </select>
+        </div>
+
+        <button type="button" className="save-btn">
+          Save Changes
+        </button>
+      </form>
+    </div>
   );
 };
 

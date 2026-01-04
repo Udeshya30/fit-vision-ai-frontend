@@ -1,0 +1,53 @@
+.health-insights {
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 24px;
+    color: #0f172a;
+  }
+
+  p {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 14px;
+  }
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.insight-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #0f172a;
+  }
+
+  p {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  &.highlight {
+    border-left: 4px solid #14b8a6;
+  }
+}
+
+@media (max-width: 768px) {
+  .insight-grid {
+    grid-template-columns: 1fr;
+  }
+}

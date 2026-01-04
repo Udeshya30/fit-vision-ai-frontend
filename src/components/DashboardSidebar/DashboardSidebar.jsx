@@ -15,18 +15,11 @@ const DashboardSidebar = () => {
       </div>
 
       <nav className="sidebar-nav">
-        <Link to="/dashboard">
-          <FiHome /> Overview
-        </Link>
-        <Link to="#">
-          <FiActivity /> Health Insights
-        </Link>
-        <Link to="#">
-          <FiMessageSquare /> AI Assistant
-        </Link>
-        <Link to="#">
-          <FiUser /> Profile
-        </Link>
+        <Link to="/dashboard"><FiHome /> Overview</Link>
+        <Link to="/dashboard/insights"><FiActivity /> Health Insights</Link>
+        <Link to="/dashboard/assistant"><FiMessageSquare /> AI Assistant</Link>
+        <Link to="/dashboard/profile"><FiUser /> Profile</Link>
+
       </nav>
     </aside>
   );
