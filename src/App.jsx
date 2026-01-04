@@ -14,9 +14,10 @@ import AIAssistantPage from "./pages/AIAssistantPage/AIAssistantPage";
 import Profile from "./pages/Profile/Profile";
 import Onboarding from "./pages/Onboarding/Onboarding";
 
-/* LAYOUTS & GUARDS */
+/* LAYOUTS & ROUTE GUARDS */
 import DashboardLayout from "./layouts/DashboardLayout/DashboardLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 /* COMPONENTS */
 import Navbar from "./components/Navbar/Navbar";
@@ -36,11 +37,42 @@ const App = () => {
           }
         />
 
-        {/* ================= AUTH ================= */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        {/* ================= AUTH (PUBLIC ONLY) ================= */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/reset-password/:token"
+          element={
+            <PublicRoute>
+              <ResetPassword />
+            </PublicRoute>
+          }
+        />
 
         {/* ================= ONBOARDING (PROTECTED) ================= */}
         <Route
@@ -61,10 +93,7 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          {/* DEFAULT: Overview */}
           <Route index element={<Dashboard />} />
-
-          {/* SIDEBAR PAGES */}
           <Route path="insights" element={<HealthInsights />} />
           <Route path="assistant" element={<AIAssistantPage />} />
           <Route path="profile" element={<Profile />} />
