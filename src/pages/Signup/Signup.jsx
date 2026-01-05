@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import { FaCircleCheck } from "react-icons/fa6";
 
 import { signupUser } from "../../services/authService";
 import "./Signup.scss";
@@ -79,7 +80,9 @@ const Signup = () => {
         password: form.password,
       });
 
-      toast.success("Account created 🎉");
+      toast.success("Account created ", {
+        icon: <FaCircleCheck />,
+      });
       navigate("/onboarding");
     } catch (err) {
       toast.error(err.message || "Signup failed");
