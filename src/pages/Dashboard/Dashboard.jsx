@@ -75,7 +75,7 @@ const Dashboard = () => {
       {/* HEALTH SCORE */}
       <section className="health-score-card">
         <div className="score-ring">
-          <div className="score-value">82</div>
+          <div className="score-value">78</div>
           <div className="score-label">Health Score</div>
         </div>
 

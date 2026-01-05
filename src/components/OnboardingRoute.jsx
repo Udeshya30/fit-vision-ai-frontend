@@ -10,7 +10,7 @@ const OnboardingRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (user.onboarding_completed === true) {
+  if (user.onboarding_completed) {
     return <Navigate to="/dashboard" replace />;
   }
 
