@@ -1,7 +1,7 @@
 const goals = [
-  { value: "longevity", label: "Live longer & healthier" },
-  { value: "weight_loss", label: "Lose weight sustainably" },
-  { value: "fitness", label: "Improve fitness & energy" },
+  { value: "Live longer & healthier", label: "Live longer & healthier" },
+  { value: "Lose weight sustainably", label: "Lose weight sustainably" },
+  { value: "Improve fitness & energy", label: "Improve fitness & energy" },
 ];
 
 const StepGoal = ({ value, onBack, onSubmit, onChange }) => {

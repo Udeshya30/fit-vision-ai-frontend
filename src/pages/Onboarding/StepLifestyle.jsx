@@ -1,7 +1,7 @@
 const options = [
-  { value: "sedentary", label: "Sedentary" },
-  { value: "moderate", label: "Moderately Active" },
-  { value: "active", label: "Very Active" },
+  { value: "Sedentary", label: "Sedentary" },
+  { value: "Moderately Active", label: "Moderately Active" },
+  { value: "Very Active", label: "Very Active" },
 ];
 
 const StepLifestyle = ({ value, onNext, onBack, onChange }) => {
