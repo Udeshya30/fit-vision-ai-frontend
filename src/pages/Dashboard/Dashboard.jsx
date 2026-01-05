@@ -273,7 +273,7 @@ const Dashboard = () => {
           <div className="score-label">Health Score</div>
         </div>
 
-        <div className="score-info">
+        {/* <div className="score-info">
           <h3>
             {health?.score >= 80
               ? "Great progress"
@@ -289,15 +289,15 @@ const Dashboard = () => {
           <span className="score-hint">
             Based on body metrics, activity & habits
           </span>
-        </div>
+        </div> */}
 
-        {/* <div className="score-info">
+        <div className="score-info">
           <h3>Great progress</h3>
           <p>Your lifestyle consistency is improving steadily.</p>
           <span className="score-hint">
             Based on diet, activity & sleep
           </span>
-        </div> */}
+        </div>
       </section>
 
       {/* SNAPSHOT – REAL DATA */}
