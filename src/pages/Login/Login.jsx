@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { loginUser } from "../../services/authService";
 import { useAuth } from "../../context/AuthContext"; // ✅ MISSING IMPORT
 import "./Login.scss";
+import { PiHandWavingBold } from "react-icons/pi";
 
 const slides = [
   {
@@ -52,8 +53,10 @@ const Login = () => {
 
     try {
       await loginUser({ email, password });
-      await refreshUser(); // 🔑 hydrate user immediately
-      toast.success("Welcome back 👋");
+      await refreshUser(); // hydrate user immediately
+      toast.success("Welcome back", {
+        icon: <PiHandWavingBold />,
+      });
       navigate("/dashboard");
     } catch (err) {
       toast.error(err.message || "Login failed");

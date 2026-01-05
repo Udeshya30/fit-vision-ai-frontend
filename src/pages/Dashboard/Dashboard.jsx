@@ -12,6 +12,9 @@ import {
   Area,
 } from "recharts";
 
+import { PiHandWavingBold } from "react-icons/pi";
+
+import { useAuth } from "../../context/AuthContext";
 import "./Dashboard.scss";
 
 /* TEMP MOCK DATA — later will come from backend */
@@ -44,12 +47,25 @@ const consistencyData = [
 ];
 
 const Dashboard = () => {
+  // Hook INSIDE component
+  const { user } = useAuth();
+
+  // Derived value INSIDE component
+  const userName =
+    user?.profile?.name ||
+    user?.email?.split("@")[0] ||
+    "there";
+
+  const displayName =
+  userName.charAt(0).toUpperCase() + userName.slice(1);
+
+
   return (
     <div className="dashboard">
       {/* HEADER */}
       <section className="dashboard-header">
         <h1>
-          Welcome back, <span>Udeshya</span> 👋
+          Welcome back, <span>{displayName}</span> <PiHandWavingBold />
         </h1>
         <p>
           We’re helping you improve <strong>weight loss</strong>.
