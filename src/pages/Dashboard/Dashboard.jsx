@@ -357,7 +357,7 @@ const Dashboard = () => {
               <Tooltip />
               <Bar
                 dataKey="minutes"
-                fill="#0f766e"
+                fill="#14b8a6"
                 radius={[6, 6, 0, 0]}
               />
             </BarChart>
