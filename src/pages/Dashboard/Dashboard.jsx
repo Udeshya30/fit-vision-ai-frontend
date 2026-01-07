@@ -96,7 +96,7 @@ const Dashboard = () => {
           <div className="score-label">Health Score</div>
         </div>
 
-        {/* <div className="score-info">
+        <div className="score-info">
           <h3>
             {health?.score >= 80
               ? "Great progress"
@@ -112,15 +112,15 @@ const Dashboard = () => {
           <span className="score-hint">
             Based on body metrics, activity & habits
           </span>
-        </div> */}
+        </div> 
 
-        <div className="score-info">
+        {/* <div className="score-info">
           <h3>Great progress</h3>
           <p>Your lifestyle consistency is improving steadily.</p>
           <span className="score-hint">
             Based on diet, activity & sleep
           </span>
-        </div>
+        </div> */}
       </section>
 
       {/* SNAPSHOT – REAL DATA */}
@@ -152,26 +152,34 @@ const Dashboard = () => {
 
       {/* CHARTS */}
       <section className="charts-grid">
-        <div className="chart-card">
+        <div className="chart-card coming-soon">
           <h3>Weight Trend</h3>
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={weightData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="week" />
-              <YAxis />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="weight"
-                stroke="#14b8a6"
-                strokeWidth={3}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <div className="chart-wrapper">
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart data={weightData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="week" />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="weight"
+                  stroke="#14b8a6"
+                  strokeWidth={3}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+            {/* OVERLAY */}
+            <div className="chart-overlay">
+              <span>Coming Soon</span>
+            </div>
+          </div>
         </div>
 
-        <div className="chart-card">
-          <h3>Daily Activity (mins)</h3>
+        <div className="chart-card coming-soon">
+        <h3>Daily Activity (mins)</h3>
+
+        <div className="chart-wrapper">
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={activityData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -185,10 +193,19 @@ const Dashboard = () => {
               />
             </BarChart>
           </ResponsiveContainer>
-        </div>
 
-        <div className="chart-card full">
-          <h3>Weekly Consistency</h3>
+          {/* OVERLAY */}
+          <div className="chart-overlay">
+            <span>Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+
+        <div className="chart-card full coming-soon">
+        <h3>Weekly Consistency</h3>
+
+        <div className="chart-wrapper">
           <ResponsiveContainer width="100%" height={260}>
             <AreaChart data={consistencyData}>
               <defs>
@@ -222,7 +239,14 @@ const Dashboard = () => {
               />
             </AreaChart>
           </ResponsiveContainer>
+
+          {/* OVERLAY */}
+          <div className="chart-overlay">
+            <span>Coming Soon</span>
+          </div>
         </div>
+      </div>
+
       </section>
     </div>
   );

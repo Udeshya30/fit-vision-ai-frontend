@@ -129,6 +129,44 @@
   grid-column: span 2;
 }
 
+.chart-wrapper {
+  position: relative;
+}
+
+/* Disable interaction + blur chart */
+.coming-soon .chart-wrapper > *:first-child {
+  filter: blur(4px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Overlay layer */
+.chart-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 250, 252, 0.1);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+/* Text style */
+.chart-overlay span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .snapshot-grid {
