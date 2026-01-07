@@ -183,14 +183,14 @@ const Signup = () => {
             </button>
           </form>
 
-          <div className="divider">
+          {/* <div className="divider">
             <span>or</span>
-          </div>
+          </div> */}
 
-          <button className="google-btn" type="button" disabled>
+          {/* <button className="google-btn" type="button" disabled>
             <FcGoogle />
             Sign up with Google
-          </button>
+          </button> */}
 
           <p className="redirect">
             Already have an account? <Link to="/login">Log in</Link>

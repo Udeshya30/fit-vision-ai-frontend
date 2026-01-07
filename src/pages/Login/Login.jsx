@@ -123,14 +123,14 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="divider">
+          {/* <div className="divider">
             <span>or</span>
           </div>
 
           <button className="google-btn" disabled>
             <FcGoogle />
             Sign in with Google
-          </button>
+          </button> */}
 
           <p className="redirect">
             Don’t have an account? <Link to="/signup">Create one</Link>
