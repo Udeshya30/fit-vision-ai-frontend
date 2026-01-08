@@ -1,6 +1,54 @@
+import { useState } from "react";
+import CustomSelect from "../../components/CustomSelect/CustomSelect";
 import "./HealthPreferences.scss";
 
 const HealthPreferences = () => {
+  const [form, setForm] = useState({
+    dietType: "",
+    mealsPerDay: "",
+    lateNightEating: "",
+    sleepDuration: "",
+    sleepConsistency: "",
+    exerciseFrequency: "",
+    preferredActivity: "",
+    sedentaryJob: "",
+    bedtime: "",
+  });
+
+  const update = (key, value) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
+
+  // OPTIONS
+  const dietOptions = ["Mixed (Veg & Non-Veg)", "Vegetarian", "Vegan"];
+  const mealsOptions = ["2", "3", "4+"];
+  const lateNightOptions = ["Rarely", "Sometimes", "Often"];
+
+  const sleepDurationOptions = [
+    "Less than 6 hours",
+    "6–7 hours",
+    "7–8 hours",
+    "More than 8 hours",
+  ];
+  const sleepConsistencyOptions = [
+    "Consistent",
+    "Somewhat irregular",
+    "Very irregular",
+  ];
+
+  const exerciseOptions = [
+    "Rarely",
+    "1–2 days/week",
+    "3–4 days/week",
+    "5+ days/week",
+  ];
+  const activityOptions = [
+    "Walking",
+    "Gym / Strength",
+    "Yoga / Mobility",
+    "Mixed",
+  ];
+  const sedentaryOptions = ["Yes", "No"];
+
   return (
     <div className="health-preferences">
       <header className="page-header">
@@ -15,32 +63,36 @@ const HealthPreferences = () => {
         {/* DIET */}
         <section className="preferences-section">
           <h3>Diet Habits</h3>
+
           <div className="form-grid">
             <div className="form-group">
               <label>Diet Type</label>
-              <select>
-                <option>Mixed (Veg & Non-Veg)</option>
-                <option>Vegetarian</option>
-                <option>Vegan</option>
-              </select>
+              <CustomSelect
+                value={form.dietType}
+                placeholder="Select diet"
+                options={dietOptions}
+                onChange={(val) => update("dietType", val)}
+              />
             </div>
 
             <div className="form-group">
               <label>Meals per day</label>
-              <select>
-                <option>2</option>
-                <option>3</option>
-                <option>4+</option>
-              </select>
+              <CustomSelect
+                value={form.mealsPerDay}
+                placeholder="Select"
+                options={mealsOptions}
+                onChange={(val) => update("mealsPerDay", val)}
+              />
             </div>
 
             <div className="form-group">
               <label>Late-night eating</label>
-              <select>
-                <option>Rarely</option>
-                <option>Sometimes</option>
-                <option>Often</option>
-              </select>
+              <CustomSelect
+                value={form.lateNightEating}
+                placeholder="Select"
+                options={lateNightOptions}
+                onChange={(val) => update("lateNightEating", val)}
+              />
             </div>
           </div>
         </section>
@@ -48,29 +100,35 @@ const HealthPreferences = () => {
         {/* SLEEP */}
         <section className="preferences-section">
           <h3>Sleep Habits</h3>
+
           <div className="form-grid">
             <div className="form-group">
               <label>Average sleep duration</label>
-              <select>
-                <option>Less than 6 hours</option>
-                <option>6–7 hours</option>
-                <option>7–8 hours</option>
-                <option>More than 8 hours</option>
-              </select>
+              <CustomSelect
+                value={form.sleepDuration}
+                placeholder="Select"
+                options={sleepDurationOptions}
+                onChange={(val) => update("sleepDuration", val)}
+              />
             </div>
 
             <div className="form-group">
               <label>Typical bedtime</label>
-              <input type="time" />
+              <input
+                type="time"
+                value={form.bedtime}
+                onChange={(e) => update("bedtime", e.target.value)}
+              />
             </div>
 
             <div className="form-group">
               <label>Sleep consistency</label>
-              <select>
-                <option>Consistent</option>
-                <option>Somewhat irregular</option>
-                <option>Very irregular</option>
-              </select>
+              <CustomSelect
+                value={form.sleepConsistency}
+                placeholder="Select"
+                options={sleepConsistencyOptions}
+                onChange={(val) => update("sleepConsistency", val)}
+              />
             </div>
           </div>
         </section>
@@ -78,33 +136,36 @@ const HealthPreferences = () => {
         {/* ACTIVITY */}
         <section className="preferences-section">
           <h3>Activity & Movement</h3>
+
           <div className="form-grid">
             <div className="form-group">
               <label>Exercise frequency</label>
-              <select>
-                <option>Rarely</option>
-                <option>1–2 days/week</option>
-                <option>3–4 days/week</option>
-                <option>5+ days/week</option>
-              </select>
+              <CustomSelect
+                value={form.exerciseFrequency}
+                placeholder="Select"
+                options={exerciseOptions}
+                onChange={(val) => update("exerciseFrequency", val)}
+              />
             </div>
 
             <div className="form-group">
               <label>Preferred activity</label>
-              <select>
-                <option>Walking</option>
-                <option>Gym / Strength</option>
-                <option>Yoga / Mobility</option>
-                <option>Mixed</option>
-              </select>
+              <CustomSelect
+                value={form.preferredActivity}
+                placeholder="Select"
+                options={activityOptions}
+                onChange={(val) => update("preferredActivity", val)}
+              />
             </div>
 
             <div className="form-group">
               <label>Desk / sedentary job</label>
-              <select>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
+              <CustomSelect
+                value={form.sedentaryJob}
+                placeholder="Select"
+                options={sedentaryOptions}
+                onChange={(val) => update("sedentaryJob", val)}
+              />
             </div>
           </div>
         </section>

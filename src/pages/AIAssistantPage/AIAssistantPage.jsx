@@ -36,6 +36,27 @@ const AIAssistantPage = () => {
     });
   }, [messages]);
 
+  // const sendMessage = (text) => {
+  //   if (!text.trim()) return;
+
+  //   setMessages((prev) => [
+  //     ...prev,
+  //     { role: "user", text },
+  //   ]);
+  //   setInput("");
+
+  //   setTimeout(() => {
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       {
+  //         role: "ai",
+  //         text:
+  //           "Thanks for asking. I’ll start giving you personalized guidance here once real AI responses are connected.",
+  //       },
+  //     ]);
+  //   }, 600);
+  // };
+
   const sendMessage = (text) => {
     if (!text.trim()) return;
 
@@ -46,16 +67,112 @@ const AIAssistantPage = () => {
     setInput("");
 
     setTimeout(() => {
+      const aiReply = getSuggestedAnswer(text, profile);
+
       setMessages((prev) => [
         ...prev,
         {
           role: "ai",
-          text:
-            "Thanks for asking. I’ll start giving you personalized guidance here once real AI responses are connected.",
+          text: aiReply,
         },
       ]);
-    }, 600);
+    }, 500);
   };
+
+
+
+
+  // MOCK AI RESPONSES BASED ON PROFILE & QUESTION
+  const getSuggestedAnswer = (question, profile) => {
+  const {
+    goal,
+    lifestyle,
+    age,
+    weight,
+  } = profile || {};
+
+  switch (question) {
+    case "What should I eat to lose weight?":
+      return `
+To lose weight sustainably, focus on:
+
+• High-protein foods (eggs, dal, chicken, tofu)
+• Plenty of vegetables and fiber
+• Limiting sugar, fried foods, and refined carbs
+
+Since your goal is "${goal || "general health"}",
+aim for balanced meals instead of extreme dieting.
+Consistency matters more than perfection.
+`;
+
+    case "Create a simple weekly workout plan":
+      return `
+Here’s a simple weekly plan based on a ${lifestyle || "moderate"} lifestyle:
+
+• 3 days: Full-body strength (30–40 mins)
+• 2 days: Light cardio (walking, cycling)
+• 2 days: Rest or mobility
+
+If you're short on time, even 20 minutes a day is effective.
+`;
+
+    case "How can I improve my sleep quality?":
+      return `
+To improve sleep quality:
+
+• Keep a fixed bedtime & wake time
+• Avoid screens 60 minutes before bed
+• Avoid heavy meals late at night
+• Get sunlight exposure in the morning
+
+Good sleep will directly improve energy, fat loss, and recovery.
+`;
+
+    case "What should I focus on today?":
+      return `
+For today, focus on just 3 things:
+
+1. Move your body for at least 20–30 minutes
+2. Eat mindfully (don’t skip meals)
+3. Get enough sleep tonight
+
+Small daily wins create long-term results.
+`;
+
+    case "How many calories should I eat?":
+      return `
+Based on your details:
+
+• Age: ${age || "—"}
+• Weight: ${weight ? `${weight} kg` : "—"}
+
+A rough estimate for maintenance is:
+👉 bodyweight × 30–33 calories
+
+For fat loss, reduce by ~300–400 calories.
+This is an estimate — consistency matters more than exact numbers.
+`;
+
+    case "Best exercises for fat loss?":
+      return `
+The best exercises for fat loss are:
+
+• Walking (most underrated & sustainable)
+• Strength training (preserves muscle)
+• Short cardio sessions (cycling, jogging)
+• Bodyweight workouts
+
+Fat loss comes from consistency + nutrition, not extreme workouts.
+`;
+
+    default:
+      return `
+That’s a great question.
+I’ll soon be able to give fully personalized answers as AI gets connected.
+`;
+  }
+};
+
 
   return (
     <div className="ai-page">

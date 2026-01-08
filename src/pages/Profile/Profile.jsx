@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
-import "./Profile.scss";
 import { FaCircleCheck } from "react-icons/fa6";
+import CustomSelect from "../../components/CustomSelect/CustomSelect";
+import "./Profile.scss";
 
 const Profile = () => {
   const { user, refreshUser } = useAuth();
@@ -20,7 +21,20 @@ const Profile = () => {
 
   const [saving, setSaving] = useState(false);
 
-  // Prefill from onboarding data
+  // Dropdown options
+  const lifestyleOptions = [
+    "Sedentary",
+    "Moderately Active",
+    "Very Active",
+  ];
+
+  const goalOptions = [
+    "Live longer & healthier",
+    "Lose weight sustainably",
+    "Improve fitness & energy",
+  ];
+
+  // Prefill form from profile
   useEffect(() => {
     if (!profile) return;
 
@@ -54,7 +68,7 @@ const Profile = () => {
 
       await refreshUser();
 
-      toast.success("Profile updated successfully ", {
+      toast.success("Profile updated successfully", {
         icon: <FaCircleCheck />,
       });
     } catch {
@@ -76,7 +90,7 @@ const Profile = () => {
       </header>
 
       <form className="profile-form" onSubmit={(e) => e.preventDefault()}>
-        {/* BODY INFO */}
+        {/* BODY INFORMATION */}
         <section className="profile-section">
           <h3>Body Information</h3>
 
@@ -116,15 +130,13 @@ const Profile = () => {
 
           <div className="form-group">
             <label>Activity Level</label>
-            <select
+
+            <CustomSelect
               value={form.lifestyle}
-              onChange={(e) => update("lifestyle", e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="Sedentary">Sedentary</option>
-              <option value="Moderately Active">Moderately Active</option>
-              <option value="Very Active">Very Active</option>
-            </select>
+              placeholder="Select"
+              options={lifestyleOptions}
+              onChange={(val) => update("lifestyle", val)}
+            />
 
             <small>
               Used to personalize activity and recovery recommendations.
@@ -132,21 +144,19 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* GOAL */}
+        {/* PRIMARY GOAL */}
         <section className="profile-section">
           <h3>Primary Goal</h3>
 
           <div className="form-group">
             <label>Health Goal</label>
-            <select
+
+            <CustomSelect
               value={form.goal}
-              onChange={(e) => update("goal", e.target.value)}
-            >
-              <option value="">Select</option>
-              <option value="Live longer & healthier">Live longer & healthier</option>
-              <option value="Lose weight sustainably">Lose weight sustainably</option>
-              <option value="Improve fitness & energy">Improve fitness & energy</option>
-            </select>
+              placeholder="Select"
+              options={goalOptions}
+              onChange={(val) => update("goal", val)}
+            />
 
             <small>
               This helps us prioritize insights and AI recommendations.

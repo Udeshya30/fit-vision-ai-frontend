@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 
 import { loginUser } from "../../services/authService";
-import { useAuth } from "../../context/AuthContext"; // ✅ MISSING IMPORT
+import { useAuth } from "../../context/AuthContext"; 
 import "./Login.scss";
 import { PiHandWavingBold } from "react-icons/pi";
 

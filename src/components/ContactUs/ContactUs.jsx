@@ -30,12 +30,23 @@ const ContactUs = () => {
 
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
+
+      // hide success message after 3 seconds
+      setTimeout(() => {
+        setStatus(null);
+      }, 3000);
     } catch {
       setStatus("error");
+
+      // optionally hide error message too
+      setTimeout(() => {
+        setStatus(null);
+      }, 3000);
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <section className="contact" id="contact">

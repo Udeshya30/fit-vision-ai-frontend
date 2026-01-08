@@ -1,6 +1,6 @@
 .ai-page {
   background: #f8fafc;
-  height: 100vh;
+  height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -149,7 +149,7 @@
   flex-direction: column;
   gap: 8px;
   overflow-y: auto;
-  max-height: 180px;
+  max-height: 100%;
   padding-right: 4px;
 }
 
@@ -160,4 +160,9 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
+}
+
+
+.chat-bubble {
+  white-space: pre-line;
 }
