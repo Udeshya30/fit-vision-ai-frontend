@@ -11,6 +11,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
     <Toaster
       position="top-right"
+      containerStyle={{
+        marginTop: "70px", 
+      }}
       toastOptions={{
         duration: 3500,
         style: {
