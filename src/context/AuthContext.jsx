@@ -23,8 +23,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const logout = async () => {
-    await logoutUser();
-    setUser(null);
+    try {
+      await logoutUser();
+    } finally {
+      setUser(null); 
+    }
   };
 
   return (

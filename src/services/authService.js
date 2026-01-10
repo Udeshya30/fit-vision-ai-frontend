@@ -26,7 +26,10 @@ export const signupUser = async (payload) => {
 };
 
 export const logoutUser = async () => {
-  await fetchWithCreds("/auth/logout", { method: "POST" });
+  await fetchWithCreds("/auth/logout", { 
+    method: "POST", 
+    credentials: "include" 
+  });
 };
 
 export const getCurrentUser = async () => {
