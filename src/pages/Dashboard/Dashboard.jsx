@@ -17,7 +17,7 @@ import { useAuth } from "../../context/AuthContext";
 import { calculateHealthScore } from "../../utils/healthScore";
 import "./Dashboard.scss";
 
-/* TEMP MOCK DATA — charts only (OK for now) */
+/* TEMP MOCK DATA - charts only (OK for now) */
 const weightData = [
   { week: "W1", weight: 74 },
   { week: "W2", weight: 73.2 },
@@ -127,12 +127,12 @@ const Dashboard = () => {
       <section className="snapshot-grid">
         <div className="snapshot-card">
           <h4>Goal</h4>
-          <p>{goalLabel || "—"}</p>
+          <p>{goalLabel || "-"}</p>
         </div>
 
         <div className="snapshot-card">
           <h4>Lifestyle</h4>
-          <p>{profile?.lifestyle || "—"}</p>
+          <p>{profile?.lifestyle || "-"}</p>
         </div>
 
         <div className="snapshot-card">
@@ -140,13 +140,13 @@ const Dashboard = () => {
           <p>
             {profile?.weight
               ? `${profile.weight} kg`
-              : "—"}
+              : "-"}
           </p>
         </div>
 
         <div className="snapshot-card">
           <h4>Age</h4>
-          <p>{profile?.age || "—"}</p>
+          <p>{profile?.age || "-"}</p>
         </div>
       </section>
 

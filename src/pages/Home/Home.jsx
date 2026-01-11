@@ -26,7 +26,7 @@ const Home = () => {
 
           <p className="hero-subtitle">
             FitVisionAI uses personalized intelligence to guide your diet,
-            lifestyle, and daily habits — helping you improve long-term
+            lifestyle, and daily habits - helping you improve long-term
             health and life expectancy.
           </p>
 
@@ -73,7 +73,7 @@ const Home = () => {
             <h4>Connects Daily Signals</h4>
             <p>
               Analyzes sleep patterns, diet habits, activity levels,
-              and recovery trends — not isolated metrics.
+              and recovery trends - not isolated metrics.
             </p>
           </div>
 
@@ -179,7 +179,7 @@ const Home = () => {
       {/* DIFFERENTIATION */}
       <section className="home-difference">
         <h2 className="section-title">
-          Built for Longevity — Not Just Fitness
+          Built for Longevity - Not Just Fitness
         </h2>
 
         <div className="difference-grid">
@@ -199,7 +199,7 @@ const Home = () => {
 
       {/* FINAL CTA */}
       <section className="home-final">
-        <h2>Make Better Health Decisions — Every Day</h2>
+        <h2>Make Better Health Decisions - Every Day</h2>
         <p>Your AI companion evolves as your body and lifestyle change.</p>
         <Link to="/signup" className="btn-primary">
           Create free account

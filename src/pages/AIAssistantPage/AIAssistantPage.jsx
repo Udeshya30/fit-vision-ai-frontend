@@ -143,14 +143,14 @@ Small daily wins create long-term results.
       return `
 Based on your details:
 
-• Age: ${age || "—"}
-• Weight: ${weight ? `${weight} kg` : "—"}
+• Age: ${age || "-"}
+• Weight: ${weight ? `${weight} kg` : "-"}
 
 A rough estimate for maintenance is:
 👉 bodyweight × 30–33 calories
 
 For fat loss, reduce by ~300–400 calories.
-This is an estimate — consistency matters more than exact numbers.
+This is an estimate - consistency matters more than exact numbers.
 `;
 
     case "Best exercises for fat loss?":
@@ -231,24 +231,24 @@ I’ll soon be able to give fully personalized answers as AI gets connected.
           <div className="context-item">
             <span>Goal</span>
             <strong>
-              {profile.goal?.replace("_", " ") || "—"}
+              {profile.goal?.replace("_", " ") || "-"}
             </strong>
           </div>
 
           <div className="context-item">
             <span>Lifestyle</span>
-            <strong>{profile.lifestyle || "—"}</strong>
+            <strong>{profile.lifestyle || "-"}</strong>
           </div>
 
           <div className="context-item">
             <span>Age</span>
-            <strong>{profile.age || "—"}</strong>
+            <strong>{profile.age || "-"}</strong>
           </div>
 
           <div className="context-item">
             <span>Weight</span>
             <strong>
-              {profile.weight ? `${profile.weight} kg` : "—"}
+              {profile.weight ? `${profile.weight} kg` : "-"}
             </strong>
           </div>
 
