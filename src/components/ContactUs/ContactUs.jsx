@@ -20,7 +20,10 @@ const ContactUs = () => {
     setStatus(null);
 
     try {
-      const res = await fetch("http://localhost:8000/api/contact", {
+      const res = await fetch(
+        // "http://localhost:8000/api/contact", 
+        `${import.meta.env.VITE_API_BASE_URL}/api/contact`,
+        {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
